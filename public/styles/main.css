@@ -5,7 +5,8 @@
   font-family: Arial, sans-serif;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100%;
 }
@@ -82,7 +83,7 @@ a {
   background: white;
   border-radius: 14px;
   padding: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   font-size: 14px;
 }
 
@@ -143,6 +144,10 @@ a {
   .display-card {
     padding: 16px;
     grid-template-columns: 1fr;
+  }
+
+  .weather-card {
+    transform: translateY(-90px);
   }
 }
 
