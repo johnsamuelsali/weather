@@ -9,17 +9,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.WEATHER_API_KEY;
 
-const URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY }}&`;
+const URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&`;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// ✅ HOME ROUTE — send EMPTY object, not string
 app.get("/", (req, res) => {
   res.render("index.ejs", { data: null });
 });
 
-// ✅ ONLY ONE WEATHER ROUTE
 app.post("/weather", async (req, res) => {
   try {
     const loc = req.body.location;
@@ -27,9 +25,7 @@ app.post("/weather", async (req, res) => {
     const response = await axios.get(URL + `q=${loc}&aqi=yes`);
     const weatherData = response.data;
 
-    // ✅ FORMAT DATA PROPERLY
     const formattedData = {
-  // 📍 Location
   city: weatherData.location.name,
   region: weatherData.location.region,
   country: weatherData.location.country,
@@ -38,7 +34,6 @@ app.post("/weather", async (req, res) => {
   timezone: weatherData.location.tz_id,
   time: weatherData.location.localtime,
 
-  // 🌡 Temperature
   temperature: weatherData.current.temp_c,
   temperatureF: weatherData.current.temp_f,
   feelsLike: weatherData.current.feelslike_c,
@@ -46,29 +41,24 @@ app.post("/weather", async (req, res) => {
   windChill: weatherData.current.windchill_c,
   dewPoint: weatherData.current.dewpoint_c,
 
-  // ☁ Weather Condition
   condition: weatherData.current.condition.text,
   icon: weatherData.current.condition.icon,
   cloud: weatherData.current.cloud,
 
-  // 💨 Wind
   wind: weatherData.current.wind_kph,
   windMph: weatherData.current.wind_mph,
   windDir: weatherData.current.wind_dir,
   windDegree: weatherData.current.wind_degree,
   gust: weatherData.current.gust_kph,
 
-  // 💧 Atmosphere
   humidity: weatherData.current.humidity,
   pressure: weatherData.current.pressure_mb,
   visibility: weatherData.current.vis_km,
   uv: weatherData.current.uv,
   precip: weatherData.current.precip_mm,
 
-  // 🌞 Day/Night
   isDay: weatherData.current.is_day === 1 ? "Day" : "Night",
 
-  // 🧪 Air Quality (MAJOR VALUES ONLY)
   airCO: weatherData.current.air_quality.co,
   airNO2: weatherData.current.air_quality.no2,
   airPM25: weatherData.current.air_quality.pm2_5,
