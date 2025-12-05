@@ -146,9 +146,6 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .weather-card {
-    transform: translateY(-90px);
-  }
 }
 
 @media (min-width: 1024px) and (max-width: 1366px) {
@@ -173,5 +170,13 @@ a {
 
   form {
     margin-bottom: 12px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .weather-card.shift-up {
+    transform: translateY(-75px);
+    transition: transform 0.3s ease;
   }
 }
