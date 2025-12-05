@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather API | John</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+
+    <div class="weather-card">
+      <h2>🌦 Weather Checker</h2>
+
+      <!-- ✅ FORM -->
+      <form action="/weather" method="post">
+        <label for="cityInput">Location</label>
+        <input 
+          type="text" 
+          id="cityInput" 
+          name="location" 
+          placeholder="Enter city name"
+          required
+        />
+        <button type="submit">Submit</button>
+        <a href="/" class="back-btn">Back</a>
+      </form>
+
+      <!-- ✅ DISPLAY CARD -->
+      <div class="display-card">
+
+  <% if (data && data.error) { %>
+    <section class="default-text">
+      <p style="color:red;"><%= data.error %></p>
+    </section>
+  <% } %>
+
+  <% if (data && !data.error) { %>
+
+    <section>
+      <h3>📍 Location</h3>
+      <p><b><%= data.city %>, <%= data.region %></b></p>
+      <p><%= data.country %></p>
+      <p><%= data.time %> | <%= data.isDay %></p>
+      <p>Lat: <%= data.lat %>, Lon: <%= data.lon %></p>
+    </section>
+
+    <section>
+      <h3>🌡 Temperature</h3>
+      <p>Temp: <%= data.temperature %> °C / <%= data.temperatureF %> °F</p>
+      <p>Feels Like: <%= data.feelsLike %> °C</p>
+      <p>Heat Index: <%= data.heatIndex %> °C</p>
+      <p>Wind Chill: <%= data.windChill %> °C</p>
+      <p>Dew Point: <%= data.dewPoint %> °C</p>
+    </section>
+
+    <section>
+      <h3>☁ Weather</h3>
+      <p>Condition: <%= data.condition %></p>
+      <p>Cloud Cover: <%= data.cloud %> %</p>
+      <img src="https:<%= data.icon %>" alt="weather-icon">
+    </section>
+
+    <section>
+      <h3>💨 Wind</h3>
+      <p>Speed: <%= data.wind %> km/h</p>
+      <p>Direction: <%= data.windDir %> (<%= data.windDegree %>°)</p>
+      <p>Gust: <%= data.gust %> km/h</p>
+    </section>
+
+    <section>
+      <h3>💧 Atmosphere</h3>
+      <p>Humidity: <%= data.humidity %> %</p>
+      <p>Pressure: <%= data.pressure %> mb</p>
+      <p>Visibility: <%= data.visibility %> km</p>
+      <p>Precipitation: <%= data.precip %> mm</p>
+      <p>UV Index: <%= data.uv %></p>
+    </section>
+
+    <section>
+      <h3>🧪 Air Quality</h3>
+      <p>CO: <%= data.airCO %></p>
+      <p>NO₂: <%= data.airNO2 %></p>
+      <p>PM 2.5: <%= data.airPM25 %></p>
+      <p>PM 10: <%= data.airPM10 %></p>
+      <p>US EPA Index: <%= data.airEPA %></p>
+      <p>UK DEFRA Index: <%= data.airDefra %></p>
+    </section>
+
+  <% } %>
+
+  <% if (!data) { %>
+    <section class="default-text">
+      <p>Enter a city to view weather</p>
+    </section>
+  <% } %>
+
+</div>
+
+
+    </div>
+
+  </body>
+</html>

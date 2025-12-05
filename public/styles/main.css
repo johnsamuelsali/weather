@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* ✅ FULL SCREEN CENTERING ROOT */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* ✅ PERFECT CENTERING ON ALL SCREENS */
+body {
+  background: linear-gradient(to right, #74ebd5, #9face6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ✅ MAIN CARD */
+.weather-card {
+  background: #ffffff;
+  width: 90%;
+  max-width: 1100px;
+
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ HEADER */
+.weather-card h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+/* ✅ FORM */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+input {
+  padding: 10px 14px;
+  width: 260px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  outline: none;
+  font-size: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a69bd;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* ✅ GRID SECTION */
+.display-card {
+  background: #f4f6fb;
+  border-radius: 14px;
+  padding: 25px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ✅ TILE */
+.display-card section {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  font-size: 14px;
+}
+
+.display-card h3 {
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.display-card p {
+  margin: 4px 0;
+}
+
+.display-card img {
+  display: block;
+  margin: 10px auto;
+  width: 55px;
+}
+
+.default-text {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+/* ========================= */
+/* ✅ LAPTOP & TABLET */
+/* ========================= */
+@media (max-width: 1200px) {
+  .display-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================= */
+/* ✅ MOBILE */
+/* ========================= */
+@media (max-width: 600px) {
+
+  body {
+    align-items: flex-start;   /* ✅ FIX: stop vertical centering */
+    padding-top: 20px;        /* ✅ show header properly */
+  }
+
+  .weather-card {
+    width: 100%;
+    padding: 22px;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .display-card {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+}
